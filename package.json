@@ -1,0 +1,20 @@
+{
+  "name": "challenge01-categorizacao",
+  "version": "1.0.0",
+  "description": "Sistema para categorização de produtos de supermercado.",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node src/index.js",
+    "test": "echo \"No test specified\" && exit 1"
+  },
+  "keywords": [
+    "categorizacao",
+    "supermercado",
+    "produtos",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}
