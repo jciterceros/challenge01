@@ -316,7 +316,7 @@ A função retorna um array de categorias, onde cada categoria contém o nome da
 
 <p align="center">
     <a href="https://github.com/jciterceros/challenge01/blob/8012979f1f78ae23ef76842d14e2ac4c5d159cc9/assets/diagram.png" target="blank">
-        <img src="https://github.com/jciterceros/challenge01/blob/8012979f1f78ae23ef76842d14e2ac4c5d159cc9/assets/diagram.png" width="600" alt="Diagrama de Classes" />
+        <img src="https://github.com/jciterceros/challenge01/blob/8012979f1f78ae23ef76842d14e2ac4c5d159cc9/assets/diagram.png" width="300" alt="Diagrama de Classes" />
     </a>
 </p>
 
