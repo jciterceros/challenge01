@@ -1,0 +1,22 @@
+@startuml "Code Challenge Categorização"
+class categorizedProducts {
+  - data01Path : String
+  - data01 : Object
+  + normalizeTitle(title: String) : String
+  + categorizeProducts(products: Array) : Array
+}
+
+class Product {
+  - title : String
+  - supermarket : String
+}
+
+class Category {
+  - category : String
+  - count : Number
+  - products : Array<Product>
+}
+
+categorizedProducts --> Product : uses
+categorizedProducts --> Category : creates
+@enduml

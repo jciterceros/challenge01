@@ -1,0 +1,37 @@
+@startuml "Code Challenge Categorização"
+start
+
+:Load 'fs' and 'path' modules;
+:Define 'data01Path' as the path to 'data01.json';
+:Read and parse 'data01.json' into 'data01';
+
+:Define function 'normalizeTitle(title)';
+if (title contains special characters or extra spaces?) then (yes)
+  :Convert to lowercase;
+  :Remove special characters and extra spaces;
+  :Sort words alphabetically;
+  :Return normalized title;
+else (no)
+  :Return title as is;
+endif
+
+:Define function 'categorizeProducts(products)';
+:Initialize 'categories' as an empty object;
+
+while (products has more items?) is (yes)
+  :Get 'product.title' and normalize it using 'normalizeTitle';
+  if (normalizedTitle exists in 'categories'?) then (no)
+    :Create a new category with 'product.title';
+    :Set count to 0 and initialize products array;
+  endif
+  :Increment count for the category;
+  :Add product details to the category's products array;
+endwhile (no)
+
+:Return all categories as an array;
+
+:Call 'categorizeProducts(data01)' and store result in 'categorizedProducts';
+:Print 'categorizedProducts' as JSON;
+
+stop
+@enduml
