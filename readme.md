@@ -312,6 +312,22 @@ A contagem é incrementada e o produto é adicionado à lista de produtos da cat
 
 A função retorna um array de categorias, onde cada categoria contém o nome da categoria, a contagem de produtos e a lista de produtos.
 
+#### Diagrama de Classes:
+
+<p align="center">
+    <a href="https://github.com/jciterceros/challenge01/blob/8012979f1f78ae23ef76842d14e2ac4c5d159cc9/assets/diagram.png" target="blank">
+        <img src="https://github.com/jciterceros/challenge01/blob/8012979f1f78ae23ef76842d14e2ac4c5d159cc9/assets/diagram.png" width="600" alt="Diagrama de Classes" />
+    </a>
+</p>
+
+#### Diagrama de Fluxo:
+
+<p align="center">
+    <a href="https://github.com/jciterceros/challenge01/blob/8012979f1f78ae23ef76842d14e2ac4c5d159cc9/assets/flow.png" target="blank">
+        <img src="https://github.com/jciterceros/challenge01/blob/8012979f1f78ae23ef76842d14e2ac4c5d159cc9/assets/flow.png" width="600" alt="Diagrama de Fluxo" />
+    </a>
+</p>
+
 #### Clonando repositorio
 
 ```
