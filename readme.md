@@ -399,3 +399,64 @@ npm run test:unit
 ```sh
 npm run test:integration
 ```
+
+### Pipeline de CI/CD
+
+Este projeto utiliza um pipeline de CI/CD para garantir a qualidade do código e facilitar o processo de entrega contínua. O pipeline é configurado para executar as seguintes etapas:
+
+1. **Instalação de Dependências**:
+
+   - Instala todas as dependências do projeto usando `npm install`.
+
+2. **Execução de Testes**:
+
+   - Roda os testes unitários e de integração para garantir que o código esteja funcionando corretamente.
+
+#### Configuração do Pipeline
+
+O pipeline foi configurado utilizando [GitHub Actions](https://docs.github.com/en/actions). O arquivo de configuração está localizado em `.github/workflows/ci.yml`.
+
+#### Executando o Pipeline
+
+O pipeline é acionado automaticamente nos seguintes eventos:
+
+- Push para a branch `main`.
+- Pull requests abertos ou atualizados para a branch `main`.
+
+#### Status do Pipeline
+
+Você pode verificar o status do pipeline diretamente no repositório do GitHub, na aba **Actions**.
+
+#### Exemplo de Configuração do Workflow
+
+```yaml
+# filepath: .github/workflows/ci.yml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+```
