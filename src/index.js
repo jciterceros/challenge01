@@ -1,25 +1,37 @@
 const path = require("path");
-const readJSONFile = require("./utils/fileReader.js");
-const categorizeProducts = require("./services/categorizeProducts.js");
+const JSONReader = require("./utils/JSONReader.js");
+const TitleNormalizer = require("./services/TitleNormalizer.js");
+const ProductCategorizer = require("./services/ProductCategorizer.js");
 const logger = require("./config/logger.js");
 
 const data01Path = path.join(__dirname, "../data01.json");
 
-let data01;
-try {
-  data01 = readJSONFile(data01Path);
-} catch (error) {
-  throw new Error("Falha ao ler arquivo de dados");
+function validateData(data) {
+  if (!Array.isArray(data) || data.some((product) => !product.title || !product.supermarket)) {
+    throw new Error("Dados inválidos no arquivo JSON");
+  }
 }
 
-if (!Array.isArray(data01) || data01.some((product) => !product.title || !product.supermarket)) {
-  throw new Error("Dados inválidos no arquivo JSON");
+function main() {
+  try {
+    const dataReader = new JSONReader(data01Path);
+    const titleNormalizer = new TitleNormalizer();
+    const productCategorizer = new ProductCategorizer(titleNormalizer);
+
+    const data = dataReader.read();
+    validateData(data);
+
+    const categorizedProducts = productCategorizer.categorize(data);
+
+    logger.info("Produtos categorizados com sucesso", {
+      totalCategories: categorizedProducts.length,
+    });
+
+    console.log(JSON.stringify(categorizedProducts, null, 2));
+  } catch (error) {
+    logger.error("Falha ao ler arquivo de dados", { error: error.message });
+    process.exit(1);
+  }
 }
 
-const categorizedProducts = categorizeProducts(data01);
-
-logger.info("Produtos categorizados com sucesso", {
-  totalCategories: categorizedProducts.length,
-});
-
-console.log(JSON.stringify(categorizedProducts, null, 2));
+main();

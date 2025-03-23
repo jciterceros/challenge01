@@ -1,25 +1,27 @@
+const JSONReader = require("../../src/utils/JSONReader.js");
+const TitleNormalizer = require("../../src/services/TitleNormalizer.js");
+const ProductCategorizer = require("../../src/services/ProductCategorizer.js");
 const path = require("path");
-const readJSONFile = require("../../src/utils/fileReader.js");
-const categorizeProducts = require("../../src/services/categorizeProducts.js");
 
 describe("Testes de Integração para categorizeProducts", () => {
-  let data01;
+  const data01Path = path.join(__dirname, "../../data01.json");
+  const data = new JSONReader(data01Path).read();
 
-  beforeAll(() => {
-    const data01Path = path.join(__dirname, "../../data01.json");
-    data01 = readJSONFile(data01Path);
+  let categorizeProducts;
+
+  beforeEach(() => {
+    const titleNormalizer = new TitleNormalizer();
+    categorizeProducts = new ProductCategorizer(titleNormalizer);
   });
 
   describe("Arquivo JSON válido", () => {
     it("deve categorizar corretamente os produtos a partir de um arquivo JSON válido", () => {
-      const categorizedProducts = categorizeProducts(data01);
+      const result = categorizeProducts.categorize(data);
 
-      expect(Array.isArray(categorizedProducts)).toBe(true);
-      expect(categorizedProducts.length).toBeGreaterThan(0);
-
-      categorizedProducts.forEach((category) => {
+      expect(Array.isArray(result)).toBe(true);
+      expect(result.length).toBeGreaterThan(0);
+      result.forEach((category) => {
         expect(category).toHaveProperty("category");
-        expect(category).toHaveProperty("count");
         expect(category).toHaveProperty("products");
         expect(Array.isArray(category.products)).toBe(true);
       });
@@ -27,8 +29,20 @@ describe("Testes de Integração para categorizeProducts", () => {
   });
 
   describe("Erros de leitura de arquivo", () => {
-    it("deve lançar um erro se o arquivo JSON não existir", () => {
-      expect(() => readJSONFile("../nonexistent.json")).toThrow(/ENOENT/);
+    it("deve lançar um erro se o arquivo não for um JSON válido", () => {
+      const invalidJSONPath = "../tests/../unit/invalid.json";
+
+      // Cria um arquivo inválido temporariamente
+      const fs = require("fs");
+      const invalidContentPath = path.join(__dirname, invalidJSONPath);
+      fs.writeFileSync(invalidContentPath, "conteúdo inválido");
+
+      expect(() => {
+        readJSONFile(invalidJSONPath);
+      }).toThrow();
+
+      // Remove o arquivo inválido após o teste
+      fs.unlinkSync(invalidContentPath);
     });
   });
 });

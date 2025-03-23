@@ -1,6 +1,14 @@
-const categorizeProducts = require("../../src/services/categorizeProducts.js");
+const TitleNormalizer = require("../../src/services/TitleNormalizer.js");
+const ProductCategorizer = require("../../src/services/ProductCategorizer.js");
 
 describe("categorizeProducts", () => {
+  let categorizeProducts;
+
+  beforeEach(() => {
+    const titleNormalizer = new TitleNormalizer();
+    categorizeProducts = new ProductCategorizer(titleNormalizer);
+  });
+
   it("deve categorizar produtos pelo título normalizado", () => {
     const products = [
       { title: "Leite Integral Piracanjuba 1L", supermarket: "Supermercado A" },
@@ -8,7 +16,7 @@ describe("categorizeProducts", () => {
       { title: "Leite Integral Italac 1L", supermarket: "Supermercado A" },
     ];
 
-    const result = categorizeProducts(products);
+    const result = categorizeProducts.categorize(products);
 
     expect(result).toEqual([
       {
@@ -30,7 +38,7 @@ describe("categorizeProducts", () => {
   it("deve lidar com uma lista de produtos vazia", () => {
     const products = [];
 
-    const result = categorizeProducts(products);
+    const result = categorizeProducts.categorize(products);
 
     expect(result).toEqual([]);
   });
@@ -41,7 +49,7 @@ describe("categorizeProducts", () => {
       { title: "Arroz Tio João Branco 5kg", supermarket: "Supermercado B" },
     ];
 
-    const result = categorizeProducts(products);
+    const result = categorizeProducts.categorize(products);
 
     expect(result).toEqual([
       {
@@ -61,7 +69,7 @@ describe("categorizeProducts", () => {
       { title: "Feijão Carioca Camil 1kg", supermarket: "Supermercado C" },
     ];
 
-    const result = categorizeProducts(products);
+    const result = categorizeProducts.categorize(products);
 
     expect(result).toEqual([
       {
