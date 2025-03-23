@@ -4,8 +4,10 @@
   "description": "Sistema para categorização de produtos de supermercado.",
   "main": "src/index.js",
   "scripts": {
-    "dev": "node src/index.js",
-    "test": "jest"
+    "start": "node src/index.js",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "jest tests/unit --coverage",
+    "test:integration": "jest tests/integration --coverage"
   },
   "keywords": [
     "categorizacao",
@@ -17,5 +19,8 @@
   "license": "MIT",
   "devDependencies": {
     "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "winston": "^3.17.0"
   }
 }

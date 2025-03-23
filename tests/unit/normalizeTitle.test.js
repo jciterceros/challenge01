@@ -1,4 +1,4 @@
-const normalizeTitle = require("../src/normalizeTitle");
+const normalizeTitle = require("../../src/services/normalizeTitle.js");
 
 describe("normalizeTitle", () => {
   test("deve normalizar e ordenar as palavras de um título", () => {

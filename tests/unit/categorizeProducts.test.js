@@ -1,4 +1,4 @@
-const categorizeProducts = require("../src/categorizeProducts");
+const categorizeProducts = require("../../src/services/categorizeProducts.js");
 
 describe("categorizeProducts", () => {
   it("deve categorizar produtos pelo título normalizado", () => {

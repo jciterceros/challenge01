@@ -248,9 +248,9 @@ Após conclusão enviar link do seu repo e info para o google [Forms](https://do
 - Melhor entendimento do código
 - Entrega mais rapida
 
-## Solução
+## Solução Proposta
 
-```
+```javascript
 const fs = require("fs");
 const path = require("path");
 
@@ -262,6 +262,7 @@ function normalizeTitle(title) {
     .toLowerCase()
     .replace(/[^a-z0-9\s]/g, "") // Remove caracteres especiais
     .replace(/\s+/g, " ") // Remove espaços extras
+    .trim()
     .split(" ")
     .sort()
     .join(" ");
@@ -291,7 +292,6 @@ function categorizeProducts(products) {
 
 const categorizedProducts = categorizeProducts(data01);
 console.log(JSON.stringify(categorizedProducts, null, 2));
-
 ```
 
 ### Explicação do Código:
@@ -328,15 +328,74 @@ A função retorna um array de categorias, onde cada categoria contém o nome da
     </a>
 </p>
 
+#### Solução Proposta Atualizada incluindo Testes
+
+```plaintext
+challenge01
+├── assets
+│   ├── diagram.png
+│   └── flow.png
+├── docs
+│   ├── diagram.plantuml
+│   └── flow.plantuml
+├── src
+│   ├── config
+│   │   └── logger.js
+│   ├── services
+│   │   ├── categorizeProducts.js
+│   │   └── normalizeTitle.js
+│   ├── utils
+│   │   └── fileReader.js
+│   └── index.js
+├── tests
+│   ├── unit
+│   │   ├── categorizeProducts.test.js
+│   │   ├── fileReader.test.js
+│   │   ├── logger.test.js
+│   │   └── normalizeTitle.test.js
+│   └── integration
+│       └── index.test.js
+├── data01.json
+├── package.json
+├── README.md
+```
+
 #### Clonando repositorio
 
-```
+```sh
 git clone https://github.com/jciterceros/challenge01.git
 ```
 
-#### Executando o Código:
+### Executando o codigo
 
-```
+1. Certifique-se de que as dependências estão instaladas:
+
+```sh
 cd challenge01
-npm run dev
+npm install
+npm start
+```
+
+### Testes
+
+Este projeto inclui testes unitários e de integração para garantir a qualidade do código.
+
+#### Executando os Testes
+
+1. Para rodar todos os testes (unitários e de integração):
+
+```sh
+npm test
+```
+
+2. Para rodar apenas os testes unitários:
+
+```sh
+npm run test:unit
+```
+
+3. Para rodar apenas os testes de integração:
+
+```sh
+npm run test:integration
 ```

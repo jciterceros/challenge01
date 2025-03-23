@@ -1,10 +1,10 @@
-const readJSONFile = require("../src/fileReader");
+const readJSONFile = require("../../src/utils/fileReader.js");
 const path = require("path");
 
 describe("readJSONFile", () => {
   it("deve ler e retornar o conteúdo do arquivo data01.json corretamente", () => {
-    const relativePath = "../data01.json";
-    const data = readJSONFile(relativePath);
+    const data01Path = path.join(__dirname, "../../data01.json");
+    const data = readJSONFile(data01Path);
 
     expect(Array.isArray(data)).toBe(true);
     expect(data.length).toBeGreaterThan(0);
@@ -35,7 +35,7 @@ describe("readJSONFile", () => {
   });
 
   it("deve lançar um erro se o arquivo não for um JSON válido", () => {
-    const invalidJSONPath = "../tests/invalid.json";
+    const invalidJSONPath = "../tests/../unit/invalid.json";
 
     // Cria um arquivo inválido temporariamente
     const fs = require("fs");

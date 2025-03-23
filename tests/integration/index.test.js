@@ -1,11 +1,13 @@
-const readJSONFile = require("../src/fileReader.js");
-const categorizeProducts = require("../src/categorizeProducts.js");
+const path = require("path");
+const readJSONFile = require("../../src/utils/fileReader.js");
+const categorizeProducts = require("../../src/services/categorizeProducts.js");
 
 describe("Testes de Integração para categorizeProducts", () => {
   let data01;
 
   beforeAll(() => {
-    data01 = readJSONFile("../data01.json");
+    const data01Path = path.join(__dirname, "../../data01.json");
+    data01 = readJSONFile(data01Path);
   });
 
   describe("Arquivo JSON válido", () => {
