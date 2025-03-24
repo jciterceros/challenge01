@@ -1,4 +1,4 @@
-const logger = require("../../src/config/logger.js");
+const logger = require("../../../src/config/logger.js");
 const winston = require("winston");
 
 describe("Logger", () => {

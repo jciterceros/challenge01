@@ -1,7 +1,6 @@
 const path = require("path");
 const JSONReader = require("./utils/JSONReader.js");
-const TitleNormalizer = require("./services/TitleNormalizer.js");
-const ProductCategorizer = require("./services/ProductCategorizer.js");
+const createContainer = require("./config/container.js");
 const logger = require("./config/logger.js");
 
 const data01Path = path.join(__dirname, "../data01.json");
@@ -14,9 +13,8 @@ function validateData(data) {
 
 function main() {
   try {
+    const { productCategorizer } = createContainer();
     const dataReader = new JSONReader(data01Path);
-    const titleNormalizer = new TitleNormalizer();
-    const productCategorizer = new ProductCategorizer(titleNormalizer);
 
     const data = dataReader.read();
     validateData(data);
@@ -29,8 +27,7 @@ function main() {
 
     console.log(JSON.stringify(categorizedProducts, null, 2));
   } catch (error) {
-    logger.error("Falha ao ler arquivo de dados", { error: error.message });
-    process.exit(1);
+    throw new Error("Falha ao ler arquivo de dados");
   }
 }
 

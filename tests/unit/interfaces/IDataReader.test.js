@@ -1,5 +1,5 @@
 const assert = require("assert");
-const IDataReader = require("../../src/interfaces/IDataReader");
+const IDataReader = require("../../../src/interfaces/IDataReader");
 
 describe("IDataReader Interface", () => {
   it("deve lançar um erro se read não for implementado", () => {

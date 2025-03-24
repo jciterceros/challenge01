@@ -1,5 +1,5 @@
 const assert = require("assert");
-const ITitleNormalizer = require("../../src/interfaces/ITitleNormalizer");
+const ITitleNormalizer = require("../../../src/interfaces/ITitleNormalizer");
 
 describe("ITitleNormalizer", () => {
   it("deve lançar um erro se normalize não for implementado", () => {
