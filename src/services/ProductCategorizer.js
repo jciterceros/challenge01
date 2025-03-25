@@ -1,4 +1,5 @@
 const ICategorizer = require("../interfaces/ICategorizer");
+const TitleNormalizer = require("./TitleNormalizer");
 
 class ProductCategorizer extends ICategorizer {
   constructor(titleNormalizer) {
@@ -6,7 +7,7 @@ class ProductCategorizer extends ICategorizer {
     if (!titleNormalizer || typeof titleNormalizer.normalize !== "function") {
       throw new Error("titleNormalizer deve implementar o método 'normalize'.");
     }
-    this.titleNormalizer = titleNormalizer;
+    this.titleNormalizer = new TitleNormalizer();
   }
 
   categorize(products) {

@@ -6,7 +6,7 @@ describe("normalizeTitle", () => {
     expect(normalizeTitle("Leite Integral Piracanjuba 1L")).toBe("1l integral leite piracanjuba");
     expect(normalizeTitle("Leite Piracanjuba Integral 1L")).toBe("1l integral leite piracanjuba");
     expect(normalizeTitle("Leite Integral Italac 1L")).toBe("1l integral italac leite");
-    expect(normalizeTitle("Leite Piracanjuba Semi Desnatado 1 Litro")).toBe("1 desnatado leite litro piracanjuba semi");
+    expect(normalizeTitle("Leite Piracanjuba Semi Desnatado 1 Litro")).toBe("1l desnatado leite piracanjuba semi");
   });
 
   test("deve remover caracteres especiais", () => {
